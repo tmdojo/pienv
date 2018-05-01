@@ -1,16 +1,17 @@
 import time
 from envirophat import light, motion, weather, leds
 
-print('light\trgb\tmotion\theading\ttemp\tpress\n')
+print('light,r,g,b,x,y,z,heading,temp,press')
 
 while True:
     lux = light.light()
     leds.on()
-    rgb = str(light.rgb())[1:-1].replace(' ', '')
+    r,g,b = light.rgb()
     leds.off()
-    acc = str(motion.accelerometer())[1:-1].replace(' ', '')
+    acc = motion.accelerometer()
     heading = motion.heading()
     temp = weather.temperature()
     press = weather.pressure()
-    print('%f\t%s\t%s\t%f\t%f\t%f\n' % (lux, rgb, acc, heading, temp, press))
+    #print('{},{},{},{},{},{},{},{},{},{}'.format(lux, r, g, b, acc.x, acc.y, acc.z, heading, temp, press))
+    print('{},{},{},{},{:.2f},{:.2f},{:.2f},{:.2f},{:.2f},{:.2f}'.format(lux, r, g, b, acc.x, acc.y, acc.z, heading, temp, press))
     time.sleep(1)
