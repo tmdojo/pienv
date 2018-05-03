@@ -34,7 +34,7 @@ try:
         acc = motion.accelerometer()
         heading = motion.heading()
         temp = weather.temperature()
-        press = weather.pressure()
+        press = weather.pressure(unit='hPa')
         data = {}
         data['value1'] = lux
         data['value2'] = temp

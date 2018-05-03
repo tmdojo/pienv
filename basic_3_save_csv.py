@@ -24,7 +24,7 @@ try:
         acc = motion.accelerometer()
         heading = motion.heading()
         temp = weather.temperature()
-        press = weather.pressure()
+        press = weather.pressure(unit='hPa')
         out.write('{},{},{},{},{},{},{},{},{},{},{}\n'.format(
             now.strftime("%Y-%m-%d %H:%M:%S"), lux, r, g, b, acc.x, acc.y, acc.z, heading, temp, press))
         time.sleep(1)#yyyy-MM-dd HH:mm:ss

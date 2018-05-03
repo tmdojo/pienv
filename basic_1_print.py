@@ -19,7 +19,7 @@ while True:
     acc = motion.accelerometer()
     heading = motion.heading()
     temp = weather.temperature()
-    press = weather.pressure()
+    press = weather.pressure(unit='hPa')
     #print('{},{},{},{},{},{},{},{},{},{}'.format(lux, r, g, b, acc.x, acc.y, acc.z, heading, temp, press))
     print('{},{},{},{},{:.2f},{:.2f},{:.2f},{:.2f},{:.2f},{:.2f}'.format(lux, r, g, b, acc.x, acc.y, acc.z, heading, temp, press))
     time.sleep(1)
