@@ -16,10 +16,11 @@ from envirophat import light, motion, weather, leds
 
 # define credentials in secret.py file
 # ADAFRUIT_IO_KEY = ""
+# ADAFRUIT_IO_USER = ""
 from secret import *
 
 # Create an instance of the REST client.
-aio = Client(ADAFRUIT_IO_KEY)
+aio = Client(ADAFRUIT_IO_USER, ADAFRUIT_IO_KEY)
 
 print('Start uploading to Adafruit IO')
 
