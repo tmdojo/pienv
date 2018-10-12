@@ -21,13 +21,12 @@ from secret import *
 
 # Create an instance of the REST client.
 aio = Client(ADAFRUIT_IO_USER, ADAFRUIT_IO_KEY)
-
 print('Start uploading to Adafruit IO')
 
 lux = light.light()
 temp = weather.temperature()
 press = weather.pressure(unit='hPa')
-aio.send('env1_lux', lux)
-aio.send('env1_temp', temp)
-aio.send('env1_press', press)
+aio.send('env1-lux', lux) # 1st argument must be feed key, not feed name
+aio.send('env1-temp', temp)
+aio.send('env1-press', press)
 print("Posted to Adafruit IO: {:.2f}, {:.2f}, {:.2f}".format(lux, temp, press))
