@@ -4,25 +4,33 @@
 reference
 * Getting started with Enviro pHAT
 https://learn.pimoroni.com/tutorial/sandyj/getting-started-with-enviro-phat
-* Adafruit IO: The Internet of Things for Everyone
-https://learn.adafruit.com/adafruit-io/overview
-https://github.com/adafruit/io-client-python/tree/master/examples
 """
 
-import time
+import time, json
 from datetime import datetime
 
-# Import Adafruit IO REST client.
-from Adafruit_IO import Client
+import boto3
 
 from envirophat import light, motion, weather, leds
 
 # define credentials in secret.py file
-# ADAFRUIT_IO_KEY = ""
+# AWS_ACCESS_KEY_ID = ""
+# AWS_SECRET_ACCESS_KEY = ""
+# AWS_REGION = "us-east-1" #US East (N. Virginia)
 from secret import *
 
-# Create an instance of the REST client.
-aio = Client(ADAFRUIT_IO_USER, ADAFRUIT_IO_KEY)
+client = boto3.client("iot-data")
+
+response = client.publish(
+    topic="pm/topic",
+    qos=1,
+    payload=json.dumps(payload, ensure_ascii=False))
+
+s3 = boto3.resource('s3',
+    region_name=AWS_REGION,
+    aws_access_key_id=AWS_ACCESS_KEY_ID,
+    aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
+#bucket = s3.Bucket(BUCKET_NAME)
 
 print('Start uploading to Adafruit IO')
 
